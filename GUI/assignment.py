@@ -1,71 +1,56 @@
-
-
 from tkinter import *
-##from tkinter import scrolledtext
-from tkinter.ttk import *
-
-K=Tk()
-'''
-det=Label(K,text="Enter the Details:-",width=18,height=1)
-det.grid(row=0,column=5)
-
-lab1=Label(K,text="Name",width=9,height=1)
-lab1.grid(row=2,column=0)
+from tkinter import scrolledtext, ttk
 
 
-name=Text(K,width=9,height=1)
-name.grid(row=3,column=1)
+def submit_details():
+    # Grab the values from the inputs
+    student_name = name.get()
+    student_address = add.get("1.0", END).strip()
+    student_course = combo.get()
 
+    # Print the output to the terminal
+    print("\n--- Submitted Details ---")
+    print(f"Name: {student_name}")
+    print(f"Course: {student_course}")
+    print(f"Address: {student_address}")
+    print("-------------------------")
 
-add1=Label(K,text="Address",width=9,height=1)
-add1.grid(column=0,row=4)
-
-add=scrolledtext.ScrolledText(K,width=10,height=1)
-add.grid(column=1,row=5)
-
-'''
-lab2=Label(K,text="QUALIFICATION",width=9,height=1)
-lab2.grid(row=6,column=1)
-
-
-combo=Combobox(K)
-
-combo['values']=("BCOM","BSC","BTECH","Diploma")
-combo.grid(column=2,row=5)
-combo.current(1)
-K.geometry('350x200')
-K.mainloop()
-
-
-
-'''
-
-from tkinter import *
-from tkinter import scrolledtext
-# Removed the wildcard 'from tkinter.ttk import *' to prevent widget conflicts
-from tkinter import ttk 
 
 K = Tk()
+K.title("Student Details")
+K.geometry("350x260")
 
-# Standard Tkinter Labels (using height=1)
-det = Label(K, text="Enter the Details:-", width=18, height=1)
-lab1 = Label(K, text="Name", width=9, height=1)
-name = Text(K, width=9, height=1)
-add1 = Label(K, text="Address", width=9, height=1)
-add = scrolledtext.ScrolledText(K, width=10, height=1)
+# Header
+det = Label(K, text="Enter the Details:-", font=("Arial", 10, "bold"))
+det.grid(row=0, column=0, columnspan=2, pady=10, padx=10, sticky="w")
 
-# Explicitly using ttk.Combobox and setting values correctly
-combo = ttk.Combobox(K)
-combo['values'] = ("BCOM", "BSC", "BTECH", "Diploma")
+# Name Field
+lab1 = Label(K, text="Name:", width=10, anchor="w")
+lab1.grid(row=1, column=0, padx=10, pady=5)
 
-# Layout Configuration
-det.grid(row=0, column=0)
-lab1.grid(row=2, column=0)
-name.grid(row=2, column=1)
-add1.grid(column=0, row=3)
-add.grid(column=1, row=3)
-combo.grid(column=1, row=4)
+name = Entry(K, width=23)
+name.grid(row=1, column=1, padx=10, pady=5)
 
-K.geometry('350x200')
+# Address Field
+add1 = Label(K, text="Address:", width=10, anchor="w")
+add1.grid(row=2, column=0, padx=10, pady=5, sticky="n")
+
+add = scrolledtext.ScrolledText(K, width=17, height=3)
+add.grid(row=2, column=1, padx=10, pady=5)
+
+# Course Dropdown
+course_lbl = Label(K, text="Course:", width=10, anchor="w")
+course_lbl.grid(row=3, column=0, padx=10, pady=5)
+
+combo = ttk.Combobox(K, width=20, state="readonly")
+combo["values"] = ("BCOM", "BSC", "BTECH", "Diploma", "Undefined")
+combo.current(0)
+combo.grid(row=3, column=1, padx=10, pady=5)
+
+# Submit Button
+submit_btn = Button(
+    K, text="Submit", command=submit_details, bg="#4CAF50", fg="white", width=15
+)
+submit_btn.grid(row=4, column=0, columnspan=2, pady=15)
+
 K.mainloop()
-'''
