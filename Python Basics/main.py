@@ -1,7 +1,7 @@
-import calc
+import calc as c
 
-print("The Multiplication is",calc.mul(90,90))
-print("The Division is",calc.div(90,90))
+print("The Multiplication is",c.mul(90,90))
+print("The Division is",c.div(90,90))
 
 '''
 from calc import mul
